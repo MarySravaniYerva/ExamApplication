@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExamApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ExamApplication.styles.css" asp-append-version="true" />
+</head>
+<body>
+    @* <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ExamApplication</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </nav>
+    </header>*@
+
+
+
+    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-5 col-sm-5">
+
+    <img src="~/images/download.jpg" />
+
+    <div>
+    <h4>Staff Selection Commission</h4>
+    <span>(Government of India)</span>
+    </div>
+    </div>
+    <div class="col-md-7 col-sm-7">
+    <nav class="navbar">
+
+    </nav>
+
+    <img src="~/images/nationalemb.png" />
+
+    </div>
+    </div>
+
+    </div>
+    </nav>
+    </header>*@
+    @* <header>
+
+    <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="row">
+
+    <div class="col-md-3 col-sm-3 pe-3">
+    <img class="h-50 w=50" src="/images/download.jpg" alt="SSC Logo">
+    </div>
+    <div class="col-md-3 col-sm-3 pt-2 ps-3">
+    <h5>Staff Selection Commission</h5>
+    <span>(Government of India)</span>
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ExamApplication</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-md-3 col-sm-3 pt-1">
+    <img class="h-75 w-50" src="/images/nationalemb.png">
+    </div>
+    </div>
+    </nav>
+    </header>*@
+
+
+    <header class="logoPartsec">
+        <div class="container">
+            <div class="row">
+                <div class="headerpart">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="logopart">
+                            <a tabindex="6" href="/"><img src="/Content/library/assets/images/ssc-logo.png" alt="SSC Logo"></a>
+                            <div >
+                                <h4>Staff Selection Commission</h4>
+                                <span>(Government of India)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+
+                        <div>
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li class="active"><a tabindex="7" href="/"><i class="fa fa-home" aria-hidden="true"></i> <span class="English">Home</span></a> </li>
+                                    <li><a tabindex="8" href="/Portal/Notices" class="linkActionNotices"><i class="fa fa-window-maximize" aria-hidden="true"></i> Notices</a></li>
+                                    <li><a tabindex="9" href="/Portal/Apply"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Apply</a></li>
+                                    <li><a tabindex="10" href="/Portal/AdmitCard"><i class="fa fa-address-card-o" aria-hidden="true"></i>Admit Card</a></li>
+                                    <li><a tabindex="11" href="/Portal/AnswerKey" class="linkActionAnswerKey"><i class="fa fa-file-text-o" aria-hidden="true"></i> Answer key</a></li>
+                                    <li><a tabindex="12" href="/Portal/Results" class="linkActionResults"><i class="fa fa-trophy" aria-hidden="true"></i> Result</a></li>
+                                </ul>
+                            </nav>
+                            <div class="satymevaimg">
+                                <a><img src="/Content/library/assets/images/right-logo.png" alt="satyameva jayathe"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main style="width:100%" role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+        &copy; 2023 - ExamApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

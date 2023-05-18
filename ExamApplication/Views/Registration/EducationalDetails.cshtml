@@ -1,0 +1,152 @@
+﻿@using EA.ViewModels;
+@model EducationalDetailsViewModel;
+@{
+    ViewData["Title"] = "EducationalDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Details</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        .examRegistration-form  {
+            background-color: #fff;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px 100px 10px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+        }
+        .form-iconimg{
+             text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+        }
+          .item {
+            border-radius: 20px;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="examRegistration-form">
+        <form method="post" style="max-width:1500;" enctype="multipart/form-data" asp-action="EducationalDetails" asp-controller="Registration">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div><h1 style="text-align:center">Educational Details</h1></div>
+                 <div class="form-iconimg">    
+                <span><i class="bi bi-pencil-square"></i></span>
+                 </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">Name Of Board Of Metriculation:</label>
+                <input type="text" class="form-control item" id="MetriculationBoard" placeholder="MetriculationBoard Name" asp-for="MetriculationBoard" asp-validation-for="MetriculationBoard" required>
+                <span asp-validation-for="MetriculationBoard" class="text-danger"></span>
+            </div>
+                 <div class="form-group">
+                <label for="html" style="color:blue">RollNumber Of Metriculation:</label>
+                <input type="text" class="form-control item" id="MetriculationRollNumber" placeholder="MetriculationBoard RollNumber" asp-for="MetriculationRollNumber" asp-validation-for="MetriculationBoard RollNumber" required>
+                <span asp-validation-for="MetriculationRollNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">Year OfPassing Of Metriculation:</label>
+                <input type="date" class="form-control item" id="YearOfPassingOfMetriculation" placeholder="Year Of Passing Of Metriculation " asp-for="YearOfPassingOfMetriculation" asp-validation-for="MetriculationBoard RollNumber" required>
+                <span asp-validation-for="YearOfPassingOfMetriculation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue"> GPA Of Metriculation:</label>
+                <input type="text" class="form-control item" id="GPAOfMetriculation " placeholder="GPAOfMetriculation" asp-for="GPAOfMetriculation " asp-validation-for="GPAOfMetriculation" required>
+                <span asp-validation-for="GPAOfMetriculation " class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">Name Of IntermediateBoard:</label>
+                <input type="text" class="form-control item" id="IntermediateBoard" placeholder="IntermediateBoard" asp-for="IntermediateBoard" asp-validation-for="IntermediateBoard" required>
+                <span asp-validation-for="IntermediateBoard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">RollNumber Of Intermediate:</label>
+                <input type="text" class="form-control item" id="IntermediateRollNumber" placeholder="IntermediateRollNumber" asp-for="IntermediateRollNumber" asp-validation-for="IntermediateRollNumber" required>
+                <span asp-validation-for="IntermediateRollNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">Year Of Passing Of Intermediate:</label>
+                <input type="date" class="form-control item" id="YearOfPassingOfIntermediate" placeholder="YearOfPassingOfIntermediate" asp-for="YearOfPassingOfIntermediate" asp-validation-for="YearOfPassingOfIntermediate" required>
+                <span asp-validation-for="YearOfPassingOfIntermediate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">GPA Of Intermediate:</label>
+                <input type="text" class="form-control item" id="GPAOfIntermediate" placeholder="GPAOfIntermediate" asp-for="GPAOfIntermediate" asp-validation-for="GPAOfIntermediate" required>
+                <span asp-validation-for="GPAOfIntermediate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">Graduation:</label><br>
+                <input type="text" class="form-control item" id="Graduation" placeholder="Graduation" asp-for="Graduation" asp-validation-for="Graduation" required>
+                <span asp-validation-for="Graduation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">RollNumber Of Graduation:</label>
+                <input type="text" class="form-control item" id="GraduationRollNumber" placeholder="Graduation RollNumber " asp-for="GraduationRollNumber" asp-validation-for="Graduation RollNumber" required>
+                <span asp-validation-for="GraduationRollNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">Year Of Passing Of Graduation:</label>
+                <input type="date" class="form-control item" id="YearOfPassingOfGraduation" placeholder="Year Of Passing Of Graduation" asp-for="YearOfPassingOfGraduation" asp-validation-for="YearOfPassingOfGraduation" required>
+                <span asp-validation-for="YearOfPassingOfGraduation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">GPA Of Graduation:</label>
+                <input type="text" class="form-control item" id="GPAOfGraduation" placeholder="GPA Of Graduation" asp-for="GPAOfGraduation" asp-validation-for="GPAOfGraduation" required>
+                <span asp-validation-for="GPAOfGraduation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" style="margin-left:3px;color:blue" class="control-label pr-2">Photo:</label>
+                <input type="file"  name="Photo" />
+                <div>
+                    @if (ViewBag.PhotoUploaded != null)
+                    {
+                        <label style="color:forestgreen">@ViewBag.PhotoUploaded</label>
+                    }
+                </div>
+            </div>
+            
+            <div>
+            <input type="checkbox" id="DeclarationId" />
+                <label for="DeclarationId" >hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required.</label>
+                </div>
+            <div class="form-group">
+                <button class="btn btn-primary" id="Submitbtn" type="submit" style="margin-left:400px;" disabled="disabled">Submit</button>
+            </div>
+        </form>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+           
+                $('input:checkbox').click(function () {
+                    if ($(this).is(':checked')) {
+                    $('#Submitbtn').prop("disabled", false);
+                    }
+                    else{
+                    $('#Submitbtn').prop("disabled", true);
+                    }
+                
+        });
+    });
+</script>
+</body>
+</html>

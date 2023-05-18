@@ -1,0 +1,56 @@
+﻿@using EA.ViewModels
+@model EnrollmentViewModel ;
+
+@{
+    ViewData["Title"] = "Details to be Filled For AdmitCard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="registration-form">
+        <form method="post" enctype="multipart/form-data" asp-action="DetailsFilledforAdmitCard" asp-controller="Home">
+            <div> @ViewBag.DetailsAdmitCard</div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4 class="text-primary mt-3 " style="text-align:center">Details for AdmitCard </h4>
+            <div class="form-icon" style="margin-top: 20px; margin-bottom: 30px;">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="enrollId" placeholder="EnrollId" asp-for="EnrollId" asp-validation-for="EnrollId" required>
+                <span asp-validation-for="EnrollId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="emailId" placeholder="EmailId" asp-for="EmailId" asp-validation-for="EmailId" required>
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control item" id="dateOfBirth" placeholder="Date of Birth(DD-MM-YYYY)" asp-for="DateOfBirth" required>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-user btn-block mb-5 " type="submit">
+                    Submit
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

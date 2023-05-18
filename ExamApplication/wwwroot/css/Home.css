@@ -1,0 +1,64 @@
+﻿ .forScrollNews
+        {
+    overflow-y: scroll;
+      }
+        
+.leftsideNotifications_New h3 {
+    font: 500 20px 'Roboto', sans-serif;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 8px 12px;
+    background: rgb(13, 63, 29);
+    border-bottom: 1px solid #ddd;
+    margin: 0px 0px;
+    font-weight: bold;
+}
+.leftsideNotifications_New {
+    position: relative;
+    height: 750px;
+}
+.eachNotification span i {
+    font-weight: 600;
+    font-style: normal;
+    font-size: 17px;
+    display: block;
+    margin-top: -8px;
+    margin-bottom: -8px;
+}
+.leftsideNotifications_New ul {
+    left: 0px;
+    right: 0px;
+    padding: 0px 10px;
+}
+.portalPage .col-sm-3, .portalPage .col-sm-6 {
+    float: right;
+}
+.eachNotification span {
+    color: darkblue;
+    font-size: 11px;
+    padding-right: 9px;
+    float: left;
+    width: 8%;
+    text-align: center;
+}
+.leftsideNotifications_New {
+    background: #fff;
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin: 8px 0px
+    ;
+}
+    .leftsideNotifications_New ul li {
+        border-bottom: 1px solid #ddd;
+        padding: 5px 0px 5px;
+    }
+.scrollingNotifications_New {
+    height: 700px;
+    overflow: hidden;
+}
+
+.scrollingNotifications_New {
+    padding: 10px 0px;
+}
+
+

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Admit Card";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h1  style="color: green;
+    text-decoration: underline;
+    text-decoration-color: orange;">AdmitCard</h1>
+</div>
+<div style="text-align:center;color: red"><h3>ADMIT CARDS MAY BE DOWNLOADED FROM THE FOLLOWING REGIONAL WEBSITES</h3></div>
+<hr />
+<div>
+    <table>
+        <thead >
+            <tr style="color:brown;font-size:24px;">
+                <td><b>Address</b></td>
+                <td><b>Url</b></td>
+            </tr>
+        </thead>
+        <tbody style="color:navy;">
+
+        <tr class="table-primary">
+            <th scope="row">Revised Final Vacancies for Combined Graduate Level Examination</th>
+                <td><a href="@Url.Action("DetailsFilledforAdmitCard", "Home" )"> <img src="~/img/animated-click-here-sign-and-button-image-0042.gif" style="height:25px;width:50px" /></a></td>
+        </tr>
+        <tr class="table-secondary">
+            <th scope="row">Combined Higher Secondary (10+2) Level Examination</th>
+                <td><a href="@Url.Action("DetailsFilledforAdmitCard", "Home")"> <img src="~/img/animated-click-here-sign-and-button-image-0042.gif" style="height:25px;width:50px" /></a></td>
+        </tr>
+        <tr class="table-primary">
+            <th scope="row">Constable (GD) in CAPFs,SSF and Rifleman (GD) in  Assam Rifles and Sepoy in Narcotics Control Bureau Examination</th>
+                <td><a href="@Url.Action(" DetailsFilledforAdmitCard", "Home" )"><img src="~/img/animated-click-here-sign-and-button-image-0042.gif" style="height:25px;width:50px" /></a></td>
+        </tr>
+        <tr class="table-secondary">
+            <th scope="row">Combined Graduate Level Examination</th>
+                <td><a href="@Url.Action(" DetailsFilledforAdmitCard", "Home" )"><img src="~/img/animated-click-here-sign-and-button-image-0042.gif" style="height:25px;width:50px" /></a></td>
+        </tr>
+        <tr class="table-primary">
+                <th scope="row">MTS & Havaldar (CBIC & CBN) Examination</th>
+                <td><a href="@Url.Action(" DetailsFilledforAdmitCard", "Home" )"><img src="~/img/animated-click-here-sign-and-button-image-0042.gif" style="height:25px;width:50px" /></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

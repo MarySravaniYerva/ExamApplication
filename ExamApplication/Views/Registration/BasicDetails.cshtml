@@ -1,0 +1,137 @@
+﻿@using EA.ViewModels;
+@model BasicDetailsViewModel;
+@{
+    ViewData["Title"] = "BasicDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Details</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <a href="~/lib/bootstrap/dist/css/bootstrap.css.map">~/lib/bootstrap/dist/css/bootstrap.css.map</a>
+    <link href="~/css/style.css" rel="stylesheet" />
+
+    <style>
+        .examRegistration-form {
+            background-color: #fff;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px 100px 10px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+        }
+
+        .form-iconimg {
+            text-align: center;
+            background-color: #5891ff;
+            border-radius: 50%;
+            font-size: 40px;
+            color: white;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            margin-bottom: 50px;
+            line-height: 100px;
+        }
+
+        .item {
+            border-radius: 20px;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="examRegistration-form">
+        <form method="post" style="max-width:1500;" enctype="multipart/form-data" asp-action="BasicDetails" asp-controller="Registration">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div><h1 style="text-align:center">Basic Details</h1></div>
+
+                 <div class="form-iconimg">
+                <span><i class="bi bi-pencil-square"></i></span>
+                 </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">First Name:</label>
+                    <input type="text" class="form-control item" id="FirstName" placeholder="FirstName" asp-for="FirstName" asp-validation-for="FirstName" required>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                <label for="html" style="color:blue">Last Name:</label>
+                    <input type="text" class="form-control item" id="LastName" placeholder="LastName" asp-for="LastName" asp-validation-for="LastName" required>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">Father Name:</label>
+                <input type="text" class="form-control item" id="FatherName" placeholder="FatherName" asp-for="FatherName" asp-validation-for="FatherName" required>
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                     <label for="html" style="color:blue">Mother Name:</label>
+                    <input type="text" class="form-control item" id="MotherName" placeholder="MotherName" asp-for="MotherName" asp-validation-for="MotherName" required>
+                    <span asp-validation-for="MotherName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">DOB :</label>
+                    <input type="date" class="form-control item" id="DateOfBirth" placeholder="Date of Birth(DD-MM-YYYY)" asp-for="DOB" required>
+                </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">Aadhar Number:</label>
+                    <input type="text" class="form-control item" id="Aadhaar" placeholder="Aadhar Number" asp-for="Aadhaar" asp-validation-for="AadharNumber" required>
+                    <span asp-validation-for="Aadhaar" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">Phone Number:</label>
+                    <input type="text" class="form-control item" id="PhoneNumber" placeholder="Phone Number" asp-for="PhoneNumber" asp-validation-for="PhoneNumber" required>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">Email Id:</label>
+                    <input type="text" class="form-control item" id="EmailId" placeholder="EmailId" asp-for="EmailId" asp-validation-for="EmailId" required>
+                    <span asp-validation-for="EmailId" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label for="html" style="color:blue">Gender :</label>
+                <div>
+                    <div class="formfieldCnt">
+                        <span>
+                            <input id="rbMale" name="Gender" type="radio" value="2">
+                            <label for="rbMale">Male</label>
+                        </span>
+                        <span>
+                            <input id="rbFeMale" name="Gender" type="radio" value="1">
+                            <label for="rbFeMale">Female</label>
+                        </span>
+                        <label class="error-message" id="lblerrorGender"></label>
+                    </div>
+                </div>
+            </div>
+                <div class="form-group">
+                <label for="html" style="color:blue">Full Address:</label>
+                    <input type="text" class="form-control item" id="FullAddress" placeholder="Address" asp-for="FullAddress" asp-validation-for="FullAddress" required>
+                    <span asp-validation-for="FullAddress" class="text-danger"></span>
+                </div>   
+              
+                @* <div class="form-group">
+                <submit class="btn btn-block Enroll">Enroll</submit>
+                </div>*@
+            <div class="form-group">
+                <button class="btn btn-primary"  type="submit" style="margin-left:400px;">Next</button>
+            </div>
+            </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.min.js"></script>
+        
+            
+</body>
+</html>
+

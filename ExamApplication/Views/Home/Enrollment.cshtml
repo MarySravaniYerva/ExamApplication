@@ -1,0 +1,273 @@
+﻿@using EA.ViewModels
+@model EnrollmentViewModel ;
+@{
+    ViewData["Title"] = "Enrollment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="registration-form">
+        <form method="post" enctype="multipart/form-data" asp-action="Enrollment" asp-controller="Home">
+            <div>@ViewBag.enrollStatus</div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4 class="text-primary ps-3 " style="text-align:center">Enrollment</h4>
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="FirstName" placeholder="FirstName" asp-for="FirstName" asp-validation-for="FirstName" required>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="LastName" placeholder="LastName" asp-for="LastName" asp-validation-for="LastName" required>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control item" id="DateOfBirth" placeholder="Date of Birth(DD-MM-YYYY)" asp-for="DateOfBirth" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="AadharNumber" placeholder="Aadhar Number" asp-for="AadharNumber" asp-validation-for="AadharNumber" required>
+                <span asp-validation-for="AadharNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="PhoneNumber" placeholder="Phone Number" asp-for="PhoneNumber" asp-validation-for="PhoneNumber" required>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="EmailId" placeholder="EmailId" asp-for="EmailId" asp-validation-for="EmailId" required>
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>           
+            
+             <div class="form-group " id="sendOTPDiv" >
+                <input type="button" class="btn btn-primary btn-user btn-block w-25 " disabled="disabled" id="sendOTPBtn" value="Send OTP" />
+             </div>
+              <div class="form-group row" id="OTPDiv" hidden="hidden">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="text" id="OTPField" class="form-control form-control-user"
+                             placeholder="Enter OTP" autocomplete="off">
+                     </div>
+                    <div class="col-sm-6">
+                        <input type="button" id="VerifyBtn" class="btn btn-primary btn-user btn-block" value="Verify OTP">
+                    </div>
+              </div>
+
+            <div class="form-group" id="passwordFields" hidden="hidden">
+                <div class="form-group">
+                    <input type="password" class="form-control item" id="password" placeholder="Password" asp-for="Password" asp-validation-for="Password" required>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control item" id="repeatPassword" placeholder="RepeatPassword" onchange="checkConfirmPassword();" required>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-user btn-block Enroll" type="submit" id="submitBtn" disabled="disabled" hidden="hidden">
+                    Enroll
+                </button>
+            
+            </div>
+            @* <div class="form-group">
+            <submit class="btn btn-block Enroll">Enroll</submit>
+            </div>*@
+        </form>
+    </div>
+   @* <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="~/js/script.js"></script>*@
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#EmailId').on('input change', function () {
+                if ($(this).val() != '') {
+                    $('#sendOTPBtn').prop('disabled', false);
+                }
+                else {
+                    $('#sendOTPBtn').prop('disabled', true);
+                }
+
+            });
+
+
+
+            $("#sendOTPBtn").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SendEnrollmentOTP?emailId=" + $("#EmailId").val(),
+                    success: function (data) {
+                        alert("opt has been sent to ur emailid");
+                        $("#sendOTPBtn").attr("hidden", "hidden");
+                        $("#sendOTPDiv").attr("hidden", "hidden");
+
+                        $("#OTPDiv").removeAttr("hidden");
+
+                    }
+                });
+            });
+
+
+            $("#VerifyBtn").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/VerifyOTP?emailId=' + $("#EmailId").val() + '&&OTP=' + $("#OTPField").val(),
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data == true) {
+                            alert("Opt is Verified");
+                            $("#sendOTPDiv").attr("hidden", "hidden");
+                            $("#OTPDiv").attr("hidden", "hidden");
+
+                            $("#passwordFields").removeAttr("hidden");
+                            $("#submitBtn").removeAttr("hidden");
+                        }
+                        else {
+                            alert("Incorrect OTP");
+                        }
+                    }
+                });
+            });
+
+            if ($('#OTPField').removeAttr("hidden", "hidden")) {
+                checkConfirmPassword = function () {
+                    if ($("#password").val() != $("#repeatPassword").val()) {
+                        alert("password did not match");
+                        return false;
+                    }
+                    else {
+                        $("#submitBtn").attr("disabled", false);
+                    }
+                };
+
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<script type="text/javascript">
+    $(document).ready(function(){
+            $('#EmailId').on('input change',function(){
+                if($(this).val()!= ''){
+                    $('#sendOTPBtn').prop('disabled',false);
+                }
+                else{
+                    $('#sendOTPBtn').prop('disabled',true);
+                }
+               
+            });
+    
+    
+
+            $("#sendotpbtn").click(function(){
+                $.ajax({
+                    type: "post",
+                    url: "/home/sendenrollmentotp?emailid=" + $("password").val(),
+                    success: function(data){
+                        alert("opt has been sent to ur emailid");
+                        $("#sendotpbtn").attr("hidden","hidden");
+                        $("#sendotpdiv").attr("hidden","hidden");
+
+                        $("#otpdiv").removeattr("hidden");
+                        
+                    }
+                });
+            });
+
+
+
+        //    $("#sendOTPBtn").click(function () {
+        //        $.ajax({
+        //            type: "POST",
+        //            url: '/Account/SendRegistrationOTP?emailId=' + $("#exampleInputEmail").val(),
+        //            success: function (data) {
+        //                alert("OTP has Been Sent to your EmailID");
+        //                $("#sendOTPDiv").attr("hidden", "hidden");
+        //                $("#submitBtn").attr("hidden", "hidden");
+
+        //                $("#OTPDiv").removeAttr("hidden");
+        //                $("#resendOtp").removeAttr("hidden");
+        //            }
+        //        });
+        //    });
+
+        ////$('#sendOTPBtn').click(function(){
+        //    $.ajax({
+        //        type: "POST"
+        //                url: '/Home/SendEnrollmentOTP?emailId=' + $('#EmailId').val();
+        //        success: function (data){
+        //            alert("OTP has been sent to your Email");
+        //            $('#sendOTPDiv').attr("hidden","hidden");
+        //            $('#submitBtn').attr("hidden","hidden");
+
+        //            $('#OTPDiv').removeAttr("hidden");
+
+        //        }
+        //    });
+        //});
+        //$("#VerifyBtn").click(function () {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: '/Home/VerifyOTP?emailId=' + $("#EmailId").val() + '&&OTP=' + $("#OTPField").val(),
+        //        datatype: 'json',
+        //        success: function (data) {
+        //            if (data == true) {
+        //                alert("EmailID is Verified");
+        //                $("#sendOTPDiv").attr("hidden", "hidden");
+        //                $("#OTPDiv").attr("hidden", "hidden");
+                    
+        //                $("#passwordFields").removeAttr("hidden");
+        //                $("#submitBtn").removeAttr("hidden");
+        //            }
+        //            else {
+        //                alert("Incorrect OTP");
+        //            }
+        //        }
+        //    });
+        //});
+       
+      //  if ($('#sendOTPBtn').removeAttr('hidden')) {
+            checkConfirmPassword = function () {
+                if ($("password").val() != $("repeatPassword").val()) {
+                        alert("password did not match");
+                        return false;
+                    }
+                    else{
+                        $("#submitbtn").attr("disabled",false);
+                    }
+            };
+            
+
+        });
+    </script>
+*@
+</body>
+</html>
+
+
+
+
+
+

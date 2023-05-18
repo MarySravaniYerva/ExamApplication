@@ -1,0 +1,85 @@
+﻿
+@using EA.ViewModels
+@model EnrollmentViewModel ;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Easiest Way to Add Input Masks to Your Forms</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="registration-form">
+        <form method="post" enctype="multipart/form-data" asp-action="Login" asp-controller="Home">
+                
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4 class="text-primary ps-3 " style="text-align:center">Login Page</h4>
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control item" id="emailId" placeholder="EmailId" asp-for="EmailId" asp-validation-for="EmailId" required>
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control item " id="password" placeholder="Password" asp-for="Password" asp-validation-for="Password" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            @*<fielddset>
+                <legend>login</legend>
+            </fielddset>*@
+            <div>
+                <input id="btnLogin" value="Login" class="btn btn-primary btn-user btn-block Enroll" type="submit" />            
+            </div>
+            @* <div class="form-group">
+            <submit class="btn btn-block Enroll">Enroll</submit>
+            </div>*@
+            <div class="text-center pt-3">
+                <a  href="@Url.Action("ForgotPassword", "Home")">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+                <a  href="@Url.Action("Enrollment", "Home")">Enroll!</a>
+            </div>
+        </form>
+       
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.min.js"></script>
+    @*<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="~/js/script.js"></script>
+  <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script> *@
+
+   @* <script type="text/javascript">
+        $(document).ready(function () {
+            var val = '@ViewBag.Login';
+            if (val == "Login Successfull") {
+                $("#applyForExam").removeAttr("hidden");
+
+            }
+        });
+    </script>*@
+</body>
+</html>
+
+
+
+
+
+

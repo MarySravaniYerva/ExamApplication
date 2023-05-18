@@ -1,0 +1,185 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor Accessor;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExamApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ExamApplication.styles.css" asp-append-version="true" />
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/js/datatables/jquery.datatables.min.js"></script>
+
+</head>
+<body> 
+    <header>
+
+        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
+
+
+            <div class="row">
+                <div  class="col-2 ps-5">
+                    <img style="width:130% " src="/images/download.jpg" alt="SSC Logo">
+                </div>
+           
+                <div class="col-4 mt-2">
+                    <h6>Staff Selection Commission</h6>
+                    <span>(Government of India)</span>
+                </div>
+                      
+                <div class="col-6  mt-2">
+
+
+                    @*<ul class="list-group list-group-horizontal list-unstyled ">*@
+                    <span >
+                        <a class=" btn btn-primary text-light" href="~/Home/Home" >Home</a>
+                    </span>&nbsp;
+                    @if (Accessor.HttpContext.Session.GetString("EnrollId") == null)
+                    {
+                        <span>
+                            <a class="btn btn-danger text-light" href="~/Home/Login" >Login</a>
+                        </span>
+                       
+                    }
+                   
+                    @if (Accessor.HttpContext.Session.GetString("EnrollId") != null)
+                    {
+                        <span>
+                            <a class="btn btn-info text-light " id="applyForExam" href="~/Home/Apply" >Apply</a>
+                        </span>
+                    }
+                    &nbsp;
+                    <span>
+                        <a class="btn btn-success text-light" href="~/Home/AdmitCard" >AdmitCard</a>
+                    </span>&nbsp;
+
+                    <span>
+                        <a class="btn btn-warning text-light" href="~/Home/Result" >Result</a>
+                    </span>
+                    
+
+                    @* </ul>*@
+                </div>
+                
+            </div>
+            <div>
+                @if (Accessor.HttpContext.Session.GetString("EnrollId") != null)
+                {
+                    <span>
+                        <a class="btn btn-secondary text-light" id="logOut" href="~/Home/Logout" data-target="#logoutModal">
+                            Logout
+                        </a>
+                    </span>
+                }
+                <img style="width:25%" src="/images/nationalemb.png">
+            </div>
+         
+        </nav>
+       @* <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="~/Home/Logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+       @* @if (Accessor.HttpContext.Session.GetString("EnrollId")== null)
+        {
+            <div>@Html.ActionLink("Login","Login","Home")</div>
+        }
+        @if (Accessor.HttpContext.Session.GetString("EnrollId") != null)
+        {
+            <div id="logOut">@Html.ActionLink("Logout","Logout","Home")</div>
+        }
+        *@
+    </header>
+
+
+
+    <div class="container">
+        <main style="width:100%" role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer  class="border-top page-footer bg-white">
+        <div class="row d-flex">
+            <div class="col-3 pt-3 ms-4" >
+                <p>  &copy; 2018 SSC. All Rights Reserved.</p>
+                @*&copy; 2023 - ExamApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+            </div>
+            <div class="col-6 text-center mt-0">
+
+                <p><h6>Staff Selection Commission</h6> Block No-12, CGO Complex, Lodhi Road, New Delhi-110003</p>
+              
+            </div>
+        </div>
+
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.min.js"></script>
+
+
+@*    <script type="text/javascript">
+        $(document).ready(function () {
+            var val = '@ViewBag.Login';
+         
+                if (val == "Login Successfull") {
+                    alert("Login Successful");
+                    $("#applyForExam").removeAttr("hidden")
+              
+                    }
+                else if (val == "Invalid Credentials") {
+                    alert("Invalid Credentials or please enroll before you Login");
+                    $("#applyForExam").attr("hidden", "hidden")
+
+                    }                        
+        });
+        </script>*@
+
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            var val = '@ViewBag.EnrollID';
+
+            if (val == "Login present") {
+            
+                $("#applyForExam").removeAttr("hidden")
+
+            }
+            else {               
+                $("#applyForExam").attr("hidden", "hidden")
+            }
+        });
+    </script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#logOut").click(function(){
+                alert("Are you sure you want to logout ?");
+            });
+          });
+    </script>
+</body>
+</html>

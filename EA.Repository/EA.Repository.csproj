@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EA.Database\EA.Database.csproj" />
+    <ProjectReference Include="..\EA.IRepository\EA.IRepository.csproj" />
+    <ProjectReference Include="..\EA.Models\EA.Models.csproj" />
+    <ProjectReference Include="..\EA.ViewModels\EA.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
