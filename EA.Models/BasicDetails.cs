@@ -16,12 +16,13 @@ namespace EA.Models
         public string LastName { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
-        public string DOB { get; set; }
+        public DateTime DOB { get; set; }
         public string Gender { get; set; }
         public string EmailId { get; set; }
         public string Aadhaar { get; set; }
         public string PhoneNumber { get; set; }
         public string FullAddress { get; set; }
+
  
     }
 }

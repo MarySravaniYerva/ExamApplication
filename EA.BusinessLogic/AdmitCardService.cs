@@ -1,5 +1,6 @@
 ﻿using EA.IBussinessLogic;
 using EA.IRepository;
+using EA.Models;
 using EA.Repository;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,11 @@ namespace EA.BusinessLogic
             var res = _admitCardRepository.DetailsCheckForAdmitCard(enrollId, emailId, dateOfBirth);
             return res;
         }
+        public AdmitCardModel GenerateAdmitCard(int EnrollId, string EmailID, DateTime DOB)
+        {
+            var admitCardInfo = _admitCardRepository.GenerateAdmitCard(EnrollId, EmailID, DOB);
+            return admitCardInfo;    
+        }
+
     }
 }

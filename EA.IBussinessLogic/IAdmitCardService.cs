@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace EA.IBussinessLogic
     public interface IAdmitCardService
     {
         int DetailsCheckForAdmitCard(int enrollId, string emailId, DateTime dateOfBirth);
+        AdmitCardModel GenerateAdmitCard(int EnrollId, string EmailID, DateTime DOB);
     }
 }

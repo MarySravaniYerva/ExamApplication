@@ -5,6 +5,7 @@ using EA.Repository;
 using EA.ViewModels;
 using ExamApplication.Models;
 using ExamApplication.Sessions;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -141,33 +142,6 @@ namespace ExamApplication.Controllers
                 return View();
         }
         [HttpGet]
-        public IActionResult AdmitCard()
-        {
-                return View();      
-        }
-
-        [HttpGet]
-        public IActionResult DetailsFilledforAdmitCard()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult DetailsFilledforAdmitCard(int enrollId, string emailId, DateTime dateOfBirth)
-        {
-            var enrollID = Convert.ToInt32(HttpContext.Session.GetString("EnrollId"));
-            var res = _admitCardService.DetailsCheckForAdmitCard(enrollId, emailId, dateOfBirth);
-            if (res != 0)
-            {
-                ViewBag.DetailsAdmitCard = "Details Verified";
-            }
-            else
-            {
-                ViewBag.DetailsAdmitCard = "Incorrect Details";
-            }
-            return View();
-        }
-
-
         [HttpGet]
         public IActionResult Result()
         {
@@ -225,6 +199,36 @@ namespace ExamApplication.Controllers
                 throw ex;
             }
         }
+        public IActionResult AdmitCard()
+        {
+            return View();
+        }
 
+        [HttpGet]
+        public IActionResult DetailsFilledforAdmitCard()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DetailsFilledforAdmitCard(int enrollId, string emailId, DateTime dateOfBirth)
+        {
+            var enrollID = Convert.ToInt32(HttpContext.Session.GetString("EnrollId"));
+            var res = _admitCardService.DetailsCheckForAdmitCard(enrollId, emailId, dateOfBirth);
+            if (res != 0)
+            {
+                ViewBag.DetailsAdmitCard = "Details Verified";
+            }
+            else
+            {
+                ViewBag.DetailsAdmitCard = "Incorrect Details";
+            }
+            return RedirectToAction("GenerateAdmitCard", new {EnrollId = enrollId , EmailID = emailId, DOB = dateOfBirth});
+        }
+        [HttpGet]
+        public IActionResult GenerateAdmitCard(int EnrollId, string EmailID, DateTime DOB)
+        {
+            var admitCardDetails = _admitCardService.GenerateAdmitCard(EnrollId, EmailID, DOB);
+            return View();
+        }
     }
 }
