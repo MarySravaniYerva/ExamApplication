@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,10 +35,10 @@ namespace EA.Repository
 
         public string GenerateHallTicketNumber()
         {
-            string numbers = "0123456789";
+            string numbers = "123456789";
             Random objrandom = new Random();
             string strrandom = string.Empty;
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i < 3; i++)
             {
                 int temp = objrandom.Next(0, numbers.Length);
                 strrandom += temp;
@@ -47,51 +48,42 @@ namespace EA.Repository
 
         public AdmitCardModel GenerateAdmitCard(int EnrollId, string EmailID, DateTime DOB)
         {
-            string hallTicketNUmber = "";
 
-            AdmitCardModel admitCardModel = new AdmitCardModel();
+            AdmitCardModel model = new AdmitCardModel();
             if (EnrollId != 0)
             {
-                admitCardModel.EnrollId = EnrollId ;
-
                 string HTnumber = GenerateHallTicketNumber();
-                hallTicketNUmber = HTnumber;
-                admitCardModel.HallTicketNumber = hallTicketNUmber;
-
-                var firstName =(_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x=>x.FirstName)).FirstOrDefault();
-                var lastName = (_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.LastName)).FirstOrDefault();
-                admitCardModel.CandidateName = firstName + " " + lastName;
-
-                var gender = (_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.Gender)).FirstOrDefault();
-                admitCardModel.Gender = gender;
-
-                var dateOfBirth = (_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.DOB)).FirstOrDefault();
-                admitCardModel.DateOfBirth = dateOfBirth;
-
-                admitCardModel.ExamDate= "09-09-2023  08:30 am";
-                admitCardModel.ExamDuration = "2hrs";
-
-                var motherName = (_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.MotherName)).FirstOrDefault();
-                admitCardModel.MotherName = motherName;
-
-                var fatherName = (_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.FatherName)).FirstOrDefault();
-                admitCardModel.FatherName = fatherName;
-
-                var fullAddress = (_dbContext.BasicDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.FullAddress)).FirstOrDefault();
-                admitCardModel.FullAddress = fullAddress;
-
-                admitCardModel.CenterAddress = " Aishwarya building, Survey 12, 13 & 14, GJ Colony, Ward No 3, Block No 2,Saroornagar Mdl., L.B.Nagar Circle to Sagar X Road, 3-2-126/7, Srisailam Hwy, beside Green Bawarchi, L. B. Nagar, Telangana 500074";
-
-                var photo = (_dbContext.EducationalDetails.Where(x => x.EnrollId == EnrollId).Select(x => x.Photo)).FirstOrDefault();
-                admitCardModel.Photo = photo;
-
-                admitCardModel.Signature = "";
-
                 
-            }
-            return admitCardModel;
+                var admitCardModel = (from enrollments in _dbContext.Enrollments.Where(x=>x.EnrollId == EnrollId)
+                               join bd in _dbContext.BasicDetails
+                               on enrollments.EnrollId equals bd.EnrollId into basicDetails from BDetails in basicDetails.DefaultIfEmpty()
+                               join eduDetails in _dbContext.EducationalDetails on BDetails.EnrollId equals eduDetails.EnrollId into tempEduDetails from EduDetails in tempEduDetails.DefaultIfEmpty()
+                               //where enrollments.EnrollId == EnrollId
+                               select new AdmitCardModel
+                               {
+                                   EnrollId = enrollments.EnrollId,
+                                   CandidateName = enrollments.FirstName + " " +enrollments.LastName, 
+                                   Gender = BDetails !=null ? BDetails.Gender : "",
+                                   FatherName = BDetails != null ? BDetails.FatherName : "",
+                                   MotherName = BDetails != null ? BDetails.MotherName : "",
+                                   FullAddress = BDetails != null ? BDetails.FullAddress : "",
+                                   Photo = EduDetails !=null ? EduDetails.Photo : "",
+                                   DateOfBirth = BDetails != null ? BDetails.DOB : DateTime.Now,
+                                   Signature = "",
+                                   HallTicketNumber = HTnumber,
+                                   CenterAddress = " Aishwarya building, Survey 12, 13 & 14, GJ Colony, Ward No 3, Block No 2,Saroornagar Mdl., L.B.Nagar Circle to Sagar X Road, 3-2-126/7, Srisailam Hwy, beside Green Bawarchi, L. B. Nagar, Telangana 500074",
+                                   ExamDate = "09-09-2023  08:30 am",
+                                   ExamDuration = "2hrs",
 
-
+                               }).FirstOrDefault();
+                model = admitCardModel;
+                if(model != null && model.EnrollId > 0)
+                {
+                    _dbContext.Add(model);
+                    _dbContext.SaveChanges();
+                }
+            }            
+            return model;
         }
 
     }

@@ -25,8 +25,9 @@ namespace EA.ViewModels
         public string PhoneNumber { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
+       
         [Required]
-       // [RegularExpression(@"^\d{4}\s\d{4}\s\d{4}$", ErrorMessage = "Invalid Aadhaar Number")]
+        [RegularExpression(@"(^[2-9]{1}[0-9]{11}$)", ErrorMessage = "Invalid Aadhaar number")]
         public string AadharNumber { get; set; }
 
         [Required]

@@ -14,7 +14,7 @@ namespace EA.ViewModels
         [Required]
         public string MetriculationBoard { get; set; }
         [Required]
-        [RegularExpression(@"(^[2-9]{1}[0-9]{9}$)", ErrorMessage = "Invalid Metriculation Roll Number")]
+        //[RegularExpression(@"(^[2-9]{1}[0-9]{9}$)", ErrorMessage = "Invalid Metriculation Roll Number")]
         public string MetriculationRollNumber { get; set; }
         [Required]
         public DateTime YearOfPassingOfMetriculation { get; set; }
@@ -23,7 +23,7 @@ namespace EA.ViewModels
         [Required]
         public string IntermediateBoard { get; set; }
         [Required]
-        [RegularExpression(@"(^[2-9]{1}[0-9]{9}$)", ErrorMessage = "Invalid Intermediate Roll Number")]
+        //[RegularExpression(@"(^[2-9]{1}[0-9]{9}$)", ErrorMessage = "Invalid Intermediate Roll Number")]
 
         public string IntermediateRollNumber { get; set; }
         [Required]
@@ -33,7 +33,7 @@ namespace EA.ViewModels
         [Required]
         public string Graduation { get; set; }
         [Required]
-        [RegularExpression(@"(^[2-9]{1}[0-9]{9}$)", ErrorMessage = "Invalid Graduation Roll Number")]
+        //[RegularExpression(@"(^[2-9]{1}[0-9]{9}$)", ErrorMessage = "Invalid Graduation Roll Number")]
 
         public string GraduationRollNumber { get; set; }
         [Required]

@@ -21,13 +21,15 @@ namespace ExamApplication.Controllers
         private readonly IAdmitCardService _admitCardService;
         public static IHttpContextAccessor _context;
         CreateSession createSession = new CreateSession(_context);
-        public HomeController(ILogger<HomeController> logger, IEnrollmentService enrollmentService, ILoginservice loginService, IAdmitCardService admitCardService,IHttpContextAccessor context)
+        private readonly IConfiguration _configuration;
+        public HomeController(ILogger<HomeController> logger, IEnrollmentService enrollmentService, ILoginservice loginService, IAdmitCardService admitCardService,IHttpContextAccessor context, IConfiguration configuration)
         {
             _logger = logger;
             _enrollmentService = enrollmentService;
             _loginService = loginService;
             _admitCardService = admitCardService;
             _context = context;
+            _configuration = configuration;
 
         }
         //public void CheckLogin()
@@ -228,7 +230,47 @@ namespace ExamApplication.Controllers
         public IActionResult GenerateAdmitCard(int EnrollId, string EmailID, DateTime DOB)
         {
             var admitCardDetails = _admitCardService.GenerateAdmitCard(EnrollId, EmailID, DOB);
-            return View();
+            //if(admitCardDetails != null)
+            //{
+            //    string filepath = _configuration["FilePath:PhotoPath"].ToString();
+                
+            //}
+            return View(admitCardDetails);
         }
+
+
+
+
+
+
+
+
+
+        //public IActionResult GeneratePaySlip(int id)
+        //{
+        //    try
+        //    {
+        //        if (id != 0)
+        //        {
+        //            GetEmployeeRole();
+        //            EmployeePaySlipDetails paySlipDetails = _employeeDocumentService.GetEmployeePaySlipDetailsService(id);
+        //            if (paySlipDetails != null)
+        //            {
+        //                string filepath = _configuration["FilePath:GeneratedPaySlipPath"].ToString();
+        //                Services services = new Services();
+        //                paySlipDetails.AmountInWords = ConvertAmount(Convert.ToDouble(paySlipDetails.NetPay));
+        //                var htmldata = services.PostAsync<object, string>("http://localhost:10697/Home/PaySlipGenerator", paySlipDetails).Result;
+        //                //var htmldata = this.RenderViewAsync("~/Views/Home/Index", paySlipDetails).Result;
+        //                HtmlToPdf htmlToPdf = new HtmlToPdf();
+        //                htmlToPdf.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
+        //                PdfDocument pdfDocument = htmlToPdf.ConvertHtmlString(htmldata);
+        //                pdfDocument.Save(Path.Combine(filepath, paySlipDetails.EmpID + "_" + paySlipDetails.Name + "_" + paySlipDetails.Month + ".pdf"));
+        //                pdfDocument.Close();
+        //            }
+        //        }
+        //        return Ok();
+        //    }
+        //    catch (Exception ex) { throw ex; }
+        //}
     }
 }

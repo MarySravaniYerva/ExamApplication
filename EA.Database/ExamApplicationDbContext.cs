@@ -19,5 +19,7 @@ namespace EA.Database
         public DbSet<OtpIdentityVerification> OtpIdentityVerifications { get; set; }
         public DbSet<BasicDetails>  BasicDetails { get; set; }
         public DbSet<EducationalDetails> EducationalDetails { get; set;}
+        public DbSet<AdmitCardModel> AdmitCardModels { get; set; }
+
     }
 }

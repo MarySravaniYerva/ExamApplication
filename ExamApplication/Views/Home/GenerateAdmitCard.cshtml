@@ -1,1 +1,82 @@
-﻿
+﻿@using EA.Models;
+@model AdmitCardModel;
+<!DOCTYPE Html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdmitCard</title>
+</head>
+<body style="font-size: 14px; text-align: justify; font-family: Calibri;-webkit-print-color-adjust:exact" bgcolor="#FFFFFF" align="center">
+    <table width="900" border="1" cellspacing="10" align="center" style="border-collapse:collapse;">
+        <tr>
+            <td width="200" style="text-align: left; vertical-align: middle; border: none;">
+                <table width="100%">
+                    <tr>
+                        <td style="text-align: center;">
+                            <img src="~/images/download.jpg" alt="SSC LOGO" style="text-align: center; width: 200px" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <hr />
+        <td width="700" style="text-align: center; vertical-align: top; border: none">
+            <table width="100%">
+                <tr>
+                    <td>
+                        e-ADMISSION CERTIFICATE
+                        COMBINED GRADUATION LEVEL EXAMINATION, 2023(Tier-1)
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    <hr />
+    <table>
+        <tr>
+            <td>EnrollId </td>
+            <td>@Model.EnrollId</td>
+        </tr>
+        <tr>
+            <td>HallTicket No.</td>
+            <td>@Model.HallTicketNumber</td>
+        </tr>
+    </table>
+    <table class="table table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr class="alert alert-info">
+                    <th>Date Of Birth</th>
+                    <th>ExamDate</th>
+                    <th>Exam Timing</th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>@Model.DateOfBirth</td>
+                <td>@Model.ExamDate</td>
+                <td>2:00pm</td>
+                <td>@Model.Photo</td>
+            </tr>
+        </table>
+    </table>
+    <table>
+        <tr>
+            <th>Candidate's Address</th>
+            <td>@Model.FullAddress</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Examination Venue</th>
+            <td>@Model.CenterAddress</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+
+
+
